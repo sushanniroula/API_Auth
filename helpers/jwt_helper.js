@@ -1,5 +1,6 @@
 const JWT = require('jsonwebtoken')
 const createError = require('http-errors')
+const client = require('./init_redis')
 
 module.exports = {
     signAccessToken: (userId) => {
@@ -7,7 +8,7 @@ module.exports = {
             const payload = {}
             const secret = process.env.ACCESS_TOKEN_SECRET
             const options ={
-                expiresIn: "30s",
+                expiresIn: "1m",
                 issuer: "domainurl.com",
                 audience: userId
             }
@@ -54,17 +55,45 @@ module.exports = {
                 if(err){
                     reject(createError.InternalServerError())
                 }
+
+                client.SET(userId, token, {
+                    EX: 365 * 24 * 60 * 60
+                }, (err, reply)=>{
+                    if(err){
+                        reject(createError.InternalServerError())
+                        return
+                    }
+                })
                 resolve(token)
             })
         })
     },
-    verifyRefreshToken: (refreshToken) => {
-        return new Promise((resolve, reject) => {
-            JWT.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET,(err, payload) =>{
-                if(err) return reject(createError.Unauthorized())
-                const userId = payload.aud
-                resolve(userId)
-            })
-        })
+    verifyRefreshToken: async (refreshToken) => {
+        try {
+            // Step 1: Verify the JWT token
+            const payload = JWT.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+            const userId = payload.aud;  // Extract userId from JWT payload
+    
+            // Step 2: Fetch the refresh token from Redis for the userId
+            const result = await client.GET(userId);
+    
+            // Step 3: Compare the provided refresh token with the one stored in Redis
+            if (refreshToken === result) {
+                return userId;  // Tokens match, return userId
+            }
+    
+            // Tokens don't match, throw Unauthorized error
+            throw createError.Unauthorized();
+            
+        } catch (err) {
+            // Catch any errors, including JWT verification or Redis errors
+            if (err.name === 'JsonWebTokenError') {
+                throw createError.Unauthorized();  // JWT verification failed
+            }
+            throw createError.InternalServerError();  // Redis or other internal error
+        }
     }
+    
+    
 }
+    
