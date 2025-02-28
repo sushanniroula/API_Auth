@@ -1,0 +1,66 @@
+GET http://localhost:3000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+###
+GET http://localhost:3000/home
+
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "a@a.com",
+    "password": "123456" 
+}
+###
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "b@b.com",
+    "password": "123456" 
+}
+
+###
+POST http://localhost:3000/auth/refresh-token
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3Mjk3ODg4MzcsImV4cCI6MTc2MTM0NjQzNywiYXVkIjoiNjcxOWY1YzdjZDM1Mjc2YjhjNTg3NjQwIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.fgpD89mt0TBiYGsSwq-iE_8Ob7fDDSs6T-jMJx_j9kY"
+}
+
+###
+DELETE  http://localhost:3000/auth/logout
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2NDA3ODksImV4cCI6MTc3MjE5ODM4OSwiYXVkIjoiNjdjMDAyM2QzYTE4NDdmYTVmMzBkZGE3IiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.j0kPbM8vEjBXkHQTo9QQniaMRy4oZ6gglRELCeqUWQ8"
+}
+
+// customer routes
+
+###
+POST http://localhost:3000/api/customer
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+{
+    "proId": "67c0023d3a1847fa5f30dda7",
+    "name": "mausam",
+    "email": "mausam@gmail.com",
+    "phone": "+977-9800001230000"
+}
+
+###
+GET http://localhost:3000/api/customer/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+{
+    "proId": "67c0023d3a1847fa5f30dda7"
+}
+
+# for orders
+###
+POST http://localhost:3000/api/order
