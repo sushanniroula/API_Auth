@@ -8,6 +8,7 @@ require('./helpers/init_redis')
 const AuthRoute = require('./Routes/auth.route')
 const CustomerRoute = require('./Routes/customer.route')
 const OrderRoute = require('./Routes/order.route')
+const ProductRoute = require('./Routes/product.route')
 const cors = require('cors')
 
 const app = express()
@@ -23,6 +24,7 @@ app.get('/', verifyAccessToken, async (req, res, next) => {
 app.use('/auth', AuthRoute)
 app.use('/api/customer', CustomerRoute)
 app.use('/api/order', OrderRoute)
+app.use('/api/product', ProductRoute)
 
 app.use(async (req, res, next) => {
     // const error = new Error("Not Found")

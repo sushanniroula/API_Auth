@@ -10,7 +10,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "a@a.com",
+    "email": "b@b.com",
     "password": "123456" 
 }
 ###
@@ -46,10 +46,11 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
 
 {
-    "proId": "67c0023d3a1847fa5f30dda7",
-    "name": "mausam",
-    "email": "mausam@gmail.com",
-    "phone": "+977-9800001230000"
+    "proId": "67c17c7fa37308fbd7d43fe4",
+    "name": "hari",
+    "email": "hari@gmail.com",
+    "phone": "+977-55555555"
+    
 }
 
 ###
@@ -58,9 +59,56 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
 
 {
-    "proId": "67c0023d3a1847fa5f30dda7"
+    "proId": "67c17c7fa37308fbd7d43fe4"
 }
 
 # for orders
 ###
 POST http://localhost:3000/api/order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+{
+    "proId": "67c17c11a37308fbd7d43fd5",
+    "productId": "67c17ceea37308fbd7d43ff4",
+    "customerName": "ram"
+}
+
+
+###
+GET http://localhost:3000/api/order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+{
+    "proId": "67c17c7fa37308fbd7d43fe4"
+}
+
+
+# ###
+# POST http://localhost:3000/api/order
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+# {
+#     "proId": "67bfffe73a1847fa5f30dd9e",
+#     "name": "iphone",
+#     "category": "smartphone",
+
+# }
+
+
+
+# Product
+###
+post http://localhost:3000/api/product
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+{
+    "proId": "67c17c7fa37308fbd7d43fe4",
+    "name": "LG Mobile",
+    "category": "Mobile",
+    "price": "3200",
+    "description": "this tv is best in the world"
+}

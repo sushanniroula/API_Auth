@@ -1,5 +1,6 @@
 const express = require("express");
 const Order = require("../Models/Order.model");
+const Product = require("../Models/Product.model")
 
 exports.getAllOrders = async (req, res) => {
     const { proId } = req.body
@@ -55,3 +56,24 @@ exports.deleteOrder = async (req, res) => {
         res.status(500).json({message: "Couldnot delete order", error: error.message})
     }
 };
+
+
+exports.createOrder = async(req, res)=>{
+    const { proId, productId, customerName } = req.body
+    try {
+        const product = await Product.findOne({_id: productId, customerOf: proId})
+        
+        if(!product) return res.status(404).json({message: "Couldnot find selected product"})
+        const createOrders = await Order.create({
+            customerOf: proId,
+            productId: productId,
+            amount: product.price,
+            customerName: customerName,
+        })        
+        if(!createOrders) return res.status(500).json({message: "Couldnot make order"})
+        
+        res.status(201).json({message: "Order Created", order: createOrders})
+    } catch (error) {
+        res.status(500).json({message: "Couldnot make order", error: error.message})
+    }
+}

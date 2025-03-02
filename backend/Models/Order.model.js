@@ -6,14 +6,11 @@ const orderSchema = new mongoose.Schema({
         ref: "User",
         required: true
     },
-    orderId: {
-        type: String,
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Product",
         required: true,
-        unique: true
-    },
-    customerName: {
-        type: String,
-        required: true
+        unique: false
     },
     amount: {
         type: Number,
@@ -23,7 +20,28 @@ const orderSchema = new mongoose.Schema({
         type: String,
         enum: ["pending", "completed", "in-progress"],
         default: "pending"
-    }
+    },
+    customerDetails: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Customer",
+            required: true
+        },
+        name: {
+            type: String,
+            // required: true
+        },
+        phone: {
+            type: String,
+            // required: true
+        },
+        email: {
+            type: String,
+            // required: true
+        }
+    },
+}, {
+    timestamps: true,
 });
 
 module.exports = mongoose.model("Order", orderSchema);

@@ -1,10 +1,20 @@
 const mongoose = require("mongoose");
 const Customer = require("../Models/Customer.model");
-
+const User = require('../Models/User.model')
+const userExists = async (proId) => {
+  try {
+    return await User.exists({_id: proId})
+  } catch (error) {
+    return 
+    
+  }
+}
 exports.addCustomer = async (req, res) => {
   const { proId, name, email, phone } = req.body;
-
+  const exists = await userExists(proId)
+  if(!exists) return res.status(400).json({message: "User not exist"})
   try {
+    userExists(proId)    
     const newCustomer = await Customer.create({
       customerOf: proId,
       name,
@@ -24,8 +34,8 @@ exports.addCustomer = async (req, res) => {
 
 exports.viewCustomer = async (req, res) => {
   const { proId, customerId } = req.body;
-  console.log(customerId);
-  
+  const exists = await userExists(proId)
+  if(!exists) return res.status(400).json({message: "User not exist"})
   try {
     const customerDetails = await Customer.findOne({
       _id: customerId,
@@ -44,6 +54,8 @@ exports.viewCustomer = async (req, res) => {
 
 exports.getAllCustomer = async(req, res) => {
     const { proId } = req.body
+    const exists = await userExists(proId)
+    if(!exists) return res.status(400).json({message: "User not exist"})
     try {
         const customers = await Customer.find({customerOf: proId})
         res.status(200).json(customers)
@@ -56,6 +68,8 @@ exports.getAllCustomer = async(req, res) => {
 
 exports.editCustomer = async (req, res) => {
   const { proId, customerId, name, email, phone } = req.body;
+  const exists = await userExists(proId)
+  if(!exists) return res.status(400).json({message: "User not exist"})
   try {
     const customer = await Customer.findOne({
       _id: customerId,
@@ -81,7 +95,9 @@ exports.editCustomer = async (req, res) => {
 };
 
 exports.deleteCustomer = async (req, res) => {
-  const { customerId } = req.body;
+  const { proId, customerId } = req.body;
+  const exists = await userExists(proId)
+  if(!exists) return res.status(400).json({message: "User not exist"})
   try {
     const customer = await Customer.findOne({
       _id: customerId,
