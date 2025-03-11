@@ -1,16 +1,16 @@
 GET http://localhost:3000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDExODg5ODcsImV4cCI6MTc3Mjc0NjU4NywiYXVkIjoiNjdjMTdjMTFhMzczMDhmYmQ3ZDQzZmQ1IiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.BZGSq7tONHd43nZMoHqpfn7BHai5phQ_8thU5v8uha4
 
 ###
 GET http://localhost:3000/home
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDExODg5ODcsImV4cCI6MTc3Mjc0NjU4NywiYXVkIjoiNjdjMTdjMTFhMzczMDhmYmQ3ZDQzZmQ1IiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.BZGSq7tONHd43nZMoHqpfn7BHai5phQ_8thU5v8uha4
 
 ###
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "b@b.com",
+    "email": "a@a.com",
     "password": "123456" 
 }
 ###
@@ -27,7 +27,7 @@ POST http://localhost:3000/auth/refresh-token
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3Mjk3ODg4MzcsImV4cCI6MTc2MTM0NjQzNywiYXVkIjoiNjcxOWY1YzdjZDM1Mjc2YjhjNTg3NjQwIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.fgpD89mt0TBiYGsSwq-iE_8Ob7fDDSs6T-jMJx_j9kY"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDEwMjE4OTUsImV4cCI6MTc3MjU3OTQ5NSwiYXVkIjoiNjdjMTdjMTFhMzczMDhmYmQ3ZDQzZmQ1IiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.8UlnMnBh9p1adwRi-0DL9PgaQ4bQ8bLknvZDMLJfxtw"
 }
 
 ###
@@ -35,7 +35,7 @@ DELETE  http://localhost:3000/auth/logout
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2NDA3ODksImV4cCI6MTc3MjE5ODM4OSwiYXVkIjoiNjdjMDAyM2QzYTE4NDdmYTVmMzBkZGE3IiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.j0kPbM8vEjBXkHQTo9QQniaMRy4oZ6gglRELCeqUWQ8"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDEwMjI5MzAsImV4cCI6MTc3MjU4MDUzMCwiYXVkIjoiNjdjMTdjMTFhMzczMDhmYmQ3ZDQzZmQ1IiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.kN1SJakxPiDwZ2Ppfrf5SniVrnTEh1F1tYfUW9ZbGUI"
 }
 
 // customer routes
@@ -46,21 +46,39 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
 
 {
-    "proId": "67c17c7fa37308fbd7d43fe4",
-    "name": "hari",
-    "email": "hari@gmail.com",
-    "phone": "+977-55555555"
+    "proId": "67c17c11a37308fbd7d43fd5",
+    "name": "Jack",
+    "email": "jack@gmail.com",
+    "phone": "+977-6445412545"
     
 }
 
+
 ###
-GET http://localhost:3000/api/customer/all
+PUT http://localhost:3000/api/customer/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
 
 {
-    "proId": "67c17c7fa37308fbd7d43fe4"
+    "proId": "67c17c11a37308fbd7d43fd5",
+    "customerId": "67c17c58a37308fbd7d43fde",
+    "name": "rajesh hamal",
+    "email": "hama@kamal.com",
+    "phone": "999000"
 }
+
+###
+GET http://localhost:3000/api/customer/67c17c11a37308fbd7d43fd5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+
+###
+GET http://localhost:3000/api/customer/67c17c7fa37308fbd7d43fe4/67c17c9ca37308fbd7d43fe8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+
 
 # for orders
 ###
@@ -70,18 +88,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczM
 
 {
     "proId": "67c17c11a37308fbd7d43fd5",
-    "productId": "67c17ceea37308fbd7d43ff4",
-    "customerName": "ram"
+    "productId": "67c17d08a37308fbd7d43ff6",
+    "customerDetails": {
+        "id": "67c17c49a37308fbd7d43fdb",
+        "name": "gita",
+        "phone": "+977-9845215451",
+        "email": "sushan@mail.com"
+    }
 }
 
 
 ###
-GET http://localhost:3000/api/order
+GET http://localhost:3000/api/order/all
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
 
 {
-    "proId": "67c17c7fa37308fbd7d43fe4"
+    "proId": "67c17c11a37308fbd7d43fd5"
 }
 
 

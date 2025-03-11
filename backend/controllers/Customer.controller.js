@@ -24,7 +24,7 @@ exports.addCustomer = async (req, res) => {
 
     res
       .status(201)
-      .json({ message: "Customer added successfylly", customer: newCustomer });
+      .json({ message: "Customer added", customer: newCustomer });
   } catch (error) {
     res
       .status(500)
@@ -33,7 +33,7 @@ exports.addCustomer = async (req, res) => {
 };
 
 exports.viewCustomer = async (req, res) => {
-  const { proId, customerId } = req.body;
+  const { proId, customerId } = req.params;
   const exists = await userExists(proId)
   if(!exists) return res.status(400).json({message: "User not exist"})
   try {
@@ -53,9 +53,10 @@ exports.viewCustomer = async (req, res) => {
 };
 
 exports.getAllCustomer = async(req, res) => {
-    const { proId } = req.body
-    const exists = await userExists(proId)
-    if(!exists) return res.status(400).json({message: "User not exist"})
+    const { proId }  = req.params
+    
+    // const exists = await userExists(proId)
+    // if(!exists) return res.status(400).json({message: "User not exist"})
     try {
         const customers = await Customer.find({customerOf: proId})
         res.status(200).json(customers)

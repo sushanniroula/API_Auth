@@ -10,6 +10,7 @@ const CustomerRoute = require('./Routes/customer.route')
 const OrderRoute = require('./Routes/order.route')
 const ProductRoute = require('./Routes/product.route')
 const cors = require('cors')
+const User = require('./Models/User.model')
 
 const app = express()
 app.use(cors())
@@ -17,9 +18,20 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.get('/', verifyAccessToken, async (req, res, next) => {
-    res.send("Hello from express")
-})
+app.get('/home', verifyAccessToken, async (req, res, next) => {
+    try {
+        console.log("🔹 Checking user in DB:", req.payload.aud);
+
+        const user = await User.findById(req.payload.aud);
+        if (!user) {
+            return next(createError.Unauthorized("User not found"));
+        }
+        res.json({ message: 'Welcome Home', user });
+    } catch (error) {
+        next(createError.InternalServerError());
+    }
+});
+
 // routes
 app.use('/auth', AuthRoute)
 app.use('/api/customer', CustomerRoute)

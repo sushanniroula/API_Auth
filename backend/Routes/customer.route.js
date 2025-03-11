@@ -10,9 +10,9 @@ const{
 } = require('../controllers/Customer.controller')
 
 router.post("/", verifyAccessToken, addCustomer)
-router.get("/", verifyAccessToken, viewCustomer)
-router.get("/all", verifyAccessToken, getAllCustomer)
-router.put("/:id", verifyAccessToken, editCustomer)
+router.get("/:proId/:customerId", verifyAccessToken, viewCustomer)
+router.get("/:proId", verifyAccessToken, getAllCustomer) //completed
+router.put("/", verifyAccessToken, editCustomer)
 router.delete("/:id", verifyAccessToken, deleteCustomer
 )
 
