@@ -129,9 +129,27 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
 
 {
-    "proId": "67c17c7fa37308fbd7d43fe4",
+    "proId": "67c17c11a37308fbd7d43fd5",
     "name": "LG Mobile",
     "category": "Mobile",
     "price": "3200",
     "description": "this tv is best in the world"
+}
+
+###
+delete http://localhost:3000/api/product/67c17c11a37308fbd7d43fd5/67c17d08a37308fbd7d43ff6
+
+###
+put http://localhost:3000/api/product
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
+
+{
+    "proId": "67c17c7fa37308fbd7d43fe4",
+    "productId": "67c17d28a37308fbd7d43ff8",
+    "name": "sushan name",
+    "category": "sushan cat",
+    "price": 500,
+    "description": "sushan des",
+    "addedAt": "2025-03-13T12:00:00.000Z"
 }
