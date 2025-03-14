@@ -9,6 +9,7 @@ const AuthRoute = require('./Routes/auth.route')
 const CustomerRoute = require('./Routes/customer.route')
 const OrderRoute = require('./Routes/order.route')
 const ProductRoute = require('./Routes/product.route')
+const CohortRoute = require('./Routes/cohort.route')
 const cors = require('cors')
 const User = require('./Models/User.model')
 
@@ -37,6 +38,7 @@ app.use('/auth', AuthRoute)
 app.use('/api/customer', CustomerRoute)
 app.use('/api/order', OrderRoute)
 app.use('/api/product', ProductRoute)
+app.use('/api/cohort', CohortRoute)
 
 app.use(async (req, res, next) => {
     // const error = new Error("Not Found")

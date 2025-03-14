@@ -5,8 +5,7 @@ const userExists = async (proId) => {
   try {
     return await User.exists({_id: proId})
   } catch (error) {
-    return 
-    
+    return
   }
 }
 exports.addCustomer = async (req, res) => {
@@ -59,6 +58,7 @@ exports.getAllCustomer = async(req, res) => {
     // if(!exists) return res.status(400).json({message: "User not exist"})
     try {
         const customers = await Customer.find({customerOf: proId})
+        if(customers.length === 0) return res.status(404).json({message: "Customers not found"})
         res.status(200).json(customers)
     }
     

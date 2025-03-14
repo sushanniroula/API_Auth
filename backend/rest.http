@@ -88,10 +88,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczM
 
 {
     "proId": "67c17c11a37308fbd7d43fd5",
-    "productId": "67c17d08a37308fbd7d43ff6",
+    "productId": "67d45826f77c570ab2fce0c0",
     "customerDetails": {
         "id": "67c17c49a37308fbd7d43fdb",
-        "name": "gita",
+        "name": "Sushan",
         "phone": "+977-9845215451",
         "email": "sushan@mail.com"
     }
@@ -139,6 +139,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczM
 ###
 delete http://localhost:3000/api/product/67c17c11a37308fbd7d43fd5/67c17d08a37308fbd7d43ff6
 
+
+### 
+get http://localhost:3000/api/product/all/67c17c12a37308fbd7d43fd5
+
+
 ###
 put http://localhost:3000/api/product
 Content-Type: application/json
@@ -153,3 +158,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczM
     "description": "sushan des",
     "addedAt": "2025-03-13T12:00:00.000Z"
 }
+
+
+### create cohort
+POST http://localhost:3000/api/cohort
+Content-Type: application/json
+
+{
+    "proId": "67c17c7fa37308fbd7d43fe4",
+    "name": "Loyal",
+    "criteria": "More than 6 orders"
+}
+
+### get all cohort
+GET http://localhost:3000/api/cohort/67c17c7fa37308fbd7d43fe4
+
+### view cohort detail
+GET http://localhost:3000/api/cohort/67c17c7fa37308fbd7d43fe4/67d45d6105187bb12eb20a4f
+
+### update cohort
+PUT http://localhost:3000/api/cohort/67c17c7fa37308fbd7d43fe4/67d45d6105187bb12eb20a4f
+Content-Type: application/json
+
+{
+    "name": "High-Valued Customers",
+    "criteria": "Spent > $1000"
+}
+
+### delete cohort
+DELETE http://localhost:3000/api/cohort/67c17c7fa37308fbd7d43fe4/67d45d6105187bb12eb20a4f

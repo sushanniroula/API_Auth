@@ -3,7 +3,7 @@ const Order = require("../Models/Order.model");
 const Product = require("../Models/Product.model")
 
 exports.getAllOrders = async (req, res) => {
-    const { proId } = req.body
+    const { proId } = req.params
     try {
         const orders = await Order.find({customerOf: proId})
         if(orders.length === 0) return res.status(404).json({message: "Orders not found"})
@@ -17,7 +17,7 @@ exports.getAllOrders = async (req, res) => {
 exports.viewOrder = async (req, res) => {
   const { proId, orderId } = req.body;
   try {
-    const orders = await Order.findOne({ customerOf: proId, orderId: orderId });
+    const orders = await Order.findOne({ customerOf: proId, _id: orderId });
     if (!orders) return res.status(404).json({ message: "Order not found" });
 
     res.status(200).json(orders);
