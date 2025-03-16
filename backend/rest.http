@@ -187,3 +187,77 @@ Content-Type: application/json
 
 ### delete cohort
 DELETE http://localhost:3000/api/cohort/67c17c7fa37308fbd7d43fe4/67d45d6105187bb12eb20a4f
+
+
+### add data of dashboard
+POST http://localhost:3000/api/dashboard
+Content-Type: application/json
+
+{
+    "proId": "67c17c7fa37308fbd7d43fe4",
+    "customerSatisfaction": 85,
+    "retentionRate": 78.5,
+    "churnRate": 21.5,
+    "recentActivities": [
+        "Purchased premium subscription",
+        "Contacted support",
+        "Left a positive review"
+    ],
+    "chartData": [
+        {
+            "line": {
+                "title": "Customer Growth Over Time",
+                "xAxis": ["Jan", "Feb", "Mar", "Apr", "May"],
+                "yAxis": [10, 25, 40, 55, 70]
+            },
+            "pi": {
+                "title": "Customer Distribution",
+                "labels": ["New", "Returning", "Churned"],
+                "values": [50, 30, 20]
+            },
+            "bar": {
+                "title": "Revenue by Month",
+                "xAxis": ["Jan", "Feb", "Mar", "Apr", "May"],
+                "yAxis": [5000, 7000, 8000, 9500, 11000]
+            }
+        }
+    ]
+}
+
+
+### get data for dashboard
+get http://localhost:3000/api/dashboard/67c17c7fa37308fbd7d43fe4
+
+### updata dashboard data
+PUT http://localhost:3000/api/dashboard/67c17c7fa37308fbd7d43fe4
+Content-Type: application/json
+
+{
+    "customerSatisfaction": 85,
+    "retentionRate": 78.5,
+    "churnRate": 2121212.5,
+    "recentActivities": [
+        "Purchased premium subscription",
+        "Contacted support",
+        "Left a negative review"
+    ],
+    "chartData": [
+        {
+            "line": {
+                "title": "Customer Growth Over Time",
+                "xAxis": ["Jan", "Feb", "Mar", "Apr", "May"],
+                "yAxis": [10, 25, 40, 55, 70]
+            },
+            "pi": {
+                "title": "Customer Distribution",
+                "labels": ["New", "Returning", "Churned"],
+                "values": [50, 30, 20]
+            },
+            "bar": {
+                "title": "Revenue by Month",
+                "xAxis": ["Jan", "Feb", "Mar", "Apr", "May"],
+                "yAxis": [5000, 7000, 8000, 9500, 11000]
+            }
+        }
+    ]
+}
