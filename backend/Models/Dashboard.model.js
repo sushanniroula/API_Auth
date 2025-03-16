@@ -1,9 +1,8 @@
-const { string, required } = require("@hapi/joi");
 const mongoose = require("mongoose");
 
 const LineGraph = new mongoose.Schema(
   {
-    customerOf: {
+    adminId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
