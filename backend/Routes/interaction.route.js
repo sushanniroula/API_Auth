@@ -6,5 +6,5 @@ router.post("/", createInteraction);
 router.get("/all/:proId", getAllInteraction);
 router.get("/:proId/:interactionId", viewInteraction);
 router.delete("/:proId/:interactionId", deleteInteraction);
-router.put("/", editInteraction);
+router.put("/:proId/:interactionId", editInteraction);
 module.exports = router;

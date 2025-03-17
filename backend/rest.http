@@ -129,8 +129,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDA2MzczMzQsImV4cCI6MTc3MjE5NDkzNCwiYXVkIjoiNjdiZmZmZTczYTE4NDdmYTVmMzBkZDllIiwiaXNzIjoiZG9tYWludXJsLmNvbSJ9.gyMa49yrGmjDvKt0VKyfew5pLYN005y-dEElCcUPfO8
 
 {
-    "proId": "67c17c11a37308fbd7d43fd5",
-    "name": "LG Mobile",
+    "proId": "67c17c11a37308fbd7d43fe5",
+    "name": "LG",
     "category": "Mobile",
     "price": "3200",
     "description": "this tv is best in the world"
@@ -229,7 +229,7 @@ Content-Type: application/json
 get http://localhost:3000/api/dashboard/67c17c7fa37308fbd7d43fe4
 
 ### updata dashboard data
-PUT http://localhost:3000/api/dashboard/67c17c7fa37308fbd7d43fe4
+PUT http://localhost:3000/api/dashboard/67c17c7fa37308fbd7d43fe4/
 Content-Type: application/json
 
 {
@@ -239,7 +239,8 @@ Content-Type: application/json
     "recentActivities": [
         "Purchased premium subscription",
         "Contacted support",
-        "Left a negative review"
+        "Left a negative review",
+        "Purchased premium subscription"
     ],
     "chartData": [
         {
@@ -261,3 +262,72 @@ Content-Type: application/json
         }
     ]
 }
+
+
+### interaction create
+post http://localhost:3000/api/interaction
+Content-Type: application/json
+
+{
+    "proId": "67c17c11a37308fbd7d43fd5",
+    "customerName": "Mahesh",
+    "type": "Email",
+    "notes": "Followed up on order status"
+}
+
+### interaction view
+GET http://localhost:3000/api/interaction/67c17c11a37308fbd7d43fd5/67d7bd474aec06577a270177
+
+
+### interaction upadate
+PUT http://localhost:3000/api/interaction/67c17c11a37308fbd7d43fd5/67d7bd474aec06577a270177
+Content-Type: application/json
+
+{
+    "customerName": "Sushan",
+    "type": "Chat",
+    "notes": "Followed up on order status"
+}
+
+### interaction delete
+DELETE http://localhost:3000/api/interaction/67c17c11a37308fbd7d43fd5/67d7bd474aec06577a270177
+
+
+
+### create subscription plan
+POST http://localhost:3000/api/subscription
+Content-Type: application/json
+
+{
+    "proId": "67c17c11a37308fbd7d43fd5",
+    "currentPlan": "Pro",
+    "planDurationInDays": 30,
+    "monthlyCost": 20
+}
+
+### update subscription
+PUT http://localhost:3000/api/subscription/67c17c11a37308fbd7d43fd5
+
+Content-Type: application/json
+
+{
+    "currentPlan": "Enterprise",
+    "planDurationInDays": 90,
+    "monthlyCost": 50
+}
+
+### cancel subscription
+PATCH http://localhost:3000/api/subscription/cancel/67c17c11a37308fbd7d43fd5
+
+
+### renew subscription
+PATCH http://localhost:3000/api/subscription/renew/67c17c11a37308fbd7d43fd5
+Content-Type: application/json
+
+{
+  "planDurationInDays": 30
+}
+
+
+### delete subscription (no controller yet)
+DELETE http://localhost:3000/api/subscription/delete/67c17c11a37308fbd7d43fd5

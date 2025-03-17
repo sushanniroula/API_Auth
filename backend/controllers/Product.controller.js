@@ -11,6 +11,8 @@ const userExists = async (proId) => {
 
 exports.createProduct = async (req, res) => {
   const { proId, name, category, description, price } = req.body;
+  const exists = await userExists(proId);
+  if (!exists) return res.status(400).json({ message: "User not exist" });
   try {
     const createProducts = await Product.create({
       customerOf: proId,
@@ -35,11 +37,12 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   const { proId } = req.params;
 
-  // const exists = await userExists(proId)
-  // if(!exists) return res.status(400).json({message: "User not exist"})
+  const exists = await userExists(proId);
+  if (!exists) return res.status(400).json({ message: "User not exist" });
   try {
     const products = await Product.find({ customerOf: proId });
-    if(products.length === 0) return res.status(404).json({message: "Products not found"})
+    if (products.length === 0)
+      return res.status(404).json({ message: "Products not found" });
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ message: "Failed to load" });
@@ -89,20 +92,21 @@ exports.deleteProduct = async (req, res) => {
 
 exports.editProduct = async (req, res) => {
   try {
-    const { proId, productId, name, category, description, addedAt } = req.body;
-    console.log(req.body)
+    const { proId, productId, name, price, category, description, addedAt } = req.body;
+    console.log(req.body);
     const exists = await userExists(proId);
     if (!exists) return res.status(400).json({ message: "User not exist" });
 
     const editProduct = await Product.findOneAndUpdate(
       { customerOf: proId, _id: productId },
-      {name, category, description, addedAt},
-      {new: true, runValidators: true}
-    )
-    if(!editProduct) return res.status(400).json({message: "Product could not updated"})
-    
-    res.status(200).json({message: "Product updated"})
+      { name, category, price, description, addedAt },
+      { new: true, runValidators: true }
+    );
+    if (!editProduct)
+      return res.status(400).json({ message: "Product could not updated" });
+
+    res.status(200).json({ message: "Product updated" });
   } catch (error) {
-    res.status(500).json({message: "Failed to update", error: error.message})
+    res.status(500).json({ message: "Failed to update", error: error.message });
   }
 };

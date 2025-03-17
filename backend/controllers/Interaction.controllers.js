@@ -1,4 +1,3 @@
-const express = require("express");
 const Interaction = require("../Models/Interaction.model");
 const User = require("../Models/User.model");
 const userExists = async (proId) => {
@@ -86,13 +85,14 @@ exports.deleteInteraction = async (req, res) => {
 
 exports.editInteraction = async (req, res) => {
   try {
-    const { proId, interactionId, customerName, type, date, notes } = req.body;
+    const { proId, interactionId } = req.params
+    const {  customerName, type, notes } = req.body;
     const exists = await userExists(proId);
     if (!exists) return res.status(400).json({ message: "User not exist" });
 
     const editInteraction = await Interaction.findOneAndUpdate(
       { customerOf: proId, _id: interactionId },
-      {customerName, type, date, notes},
+      {customerName, type, notes},
       {new: true, runValidators: true}
     )
     if(!editInteraction) return res.status(400).json({message: "Interaction could not updated"})
