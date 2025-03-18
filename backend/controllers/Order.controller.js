@@ -28,8 +28,6 @@ exports.viewOrder = async (req, res) => {
 
 exports.editOrder = async (req, res) => {
     const {proId, orderId, customerName, amount, status } = req.body
-    console.log(req.body);
-    
     try {
         const customer = await Order.findOne({
               _id: orderId,

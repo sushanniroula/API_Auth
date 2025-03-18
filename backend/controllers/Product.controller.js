@@ -93,7 +93,6 @@ exports.deleteProduct = async (req, res) => {
 exports.editProduct = async (req, res) => {
   try {
     const { proId, productId, name, price, category, description, addedAt } = req.body;
-    console.log(req.body);
     const exists = await userExists(proId);
     if (!exists) return res.status(400).json({ message: "User not exist" });
 

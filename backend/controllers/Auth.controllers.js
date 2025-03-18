@@ -69,7 +69,6 @@ module.exports = {
             const userId = await verifyRefreshToken(refreshToken)
             const result = await client.DEL(userId, (err, value) => {
                 if(err){
-                    console.log(err.message)
                     throw createError.InternalServerError()
                 }
             })

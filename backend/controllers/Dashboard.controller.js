@@ -17,8 +17,6 @@ exports.addData = async (req, res) => {
     recentActivities,
     chartData,
   } = req.body;
-  console.log(proId);
-  
   const exists = await userExists(proId)
   if(!exists) return res.status(400).json({message: "User not exist"})
 
